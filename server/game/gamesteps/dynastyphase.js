@@ -18,12 +18,11 @@ I Dynasty Phase
 
 class DynastyPhase extends Phase {
     constructor(game) {
-        super(game, Phases.Dynasty);
+        super(game, Phases.PlayAndDrawCards);
         this.initialise([
-            new SimpleStep(game, () => this.beginDynasty()),
-            new SimpleStep(game, () => this.flipDynastyCards()),
-            new SimpleStep(game, () => this.collectFate()),
-            new SimpleStep(game, () => this.dynastyActionWindowStep())
+            new SimpleStep(game, () => this.beginDraw()),
+            new SimpleStep(game, () => this.collectCounters()),
+            new SimpleStep(game, () => this.drawActionWindowStep())
         ]);
     }
 
@@ -33,7 +32,7 @@ class DynastyPhase extends Phase {
         super.createPhase();
     }
 
-    beginDynasty() {
+    beginDraw() {
         _.each(this.game.getPlayersInFirstPlayerOrder(), player => {
             player.beginDynasty();
         });
@@ -55,13 +54,13 @@ class DynastyPhase extends Phase {
         });
     }
 
-    collectFate() {
+    collectCounters() {
         _.each(this.game.getPlayersInFirstPlayerOrder(), player => {
             player.collectFate();
         });
     }
 
-    dynastyActionWindowStep() {
+    drawActionWindowStep() {
         this.game.queueStep(new DynastyActionWindow(this.game));
     }
 
