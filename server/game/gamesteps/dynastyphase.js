@@ -16,7 +16,7 @@ I Dynasty Phase
 1.5 Dynasty phase ends.
  */
 
-class DynastyPhase extends Phase {
+class PlayAndDrawPhase extends Phase {
     constructor(game) {
         super(game, Phases.PlayAndDrawCards);
         this.initialise([
@@ -66,4 +66,4 @@ class DynastyPhase extends Phase {
 
 }
 
-module.exports = DynastyPhase;
+module.exports = PlayAndDrawPhase;
